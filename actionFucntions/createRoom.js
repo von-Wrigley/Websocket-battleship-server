@@ -1,10 +1,10 @@
-import { v4 as uuidv4 } from 'uuid';
+import crypto from 'node:crypto'
 import fs from 'node:fs/promises'
   import { players } from "./addUser.js"
 import WebSocket, { WebSocketServer } from 'ws';
  
 export const createRoom = async (ws, wsServer)=>{
-      const resIndex = uuidv4()
+      const resIndex = crypto.randomUUID()
         const usersInfo  = await fs.readFile('database/userInfo.json', "utf-8")
         const users = JSON.parse(usersInfo)
  const user = JSON.stringify(users[users.length-1])
